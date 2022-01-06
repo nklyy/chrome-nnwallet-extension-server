@@ -1,4 +1,4 @@
-package status
+package health
 
 import (
 	"github.com/go-chi/chi"
@@ -13,7 +13,9 @@ func NewHandler() *Handler {
 }
 
 func (h *Handler) SetupRoutes(router chi.Router) {
-	router.Get("/status", h.statusOk)
+	router.Route("/api/v1", func(r chi.Router) {
+		r.Get("/health", h.statusOk)
+	})
 }
 
 func (h *Handler) statusOk(w http.ResponseWriter, r *http.Request) {
