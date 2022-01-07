@@ -31,6 +31,7 @@ func main() {
 		AllowCredentials: false,
 		MaxAge:           300, // Maximum value not ignored by any of major browsers
 	}))
+
 	router.Use(middleware.BasicAuth("authentication", map[string]string{cfg.User: cfg.Password}))
 
 	// Handlers
